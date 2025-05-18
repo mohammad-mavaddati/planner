@@ -1,4 +1,24 @@
 
+    
+    
+
+    // تابع برای آپدیت theme-color
+    const updateThemeColor = () => {
+      const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#000000';
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', primaryColor);
+    };
+
+    window.addEventListener('load', updateThemeColor);
+
+
+    const root = document.documentElement;
+    const observer = new MutationObserver(updateThemeColor);
+
+
+    observer.observe(root, { attributes: true, attributeFilter: ['style'] });
+  
+  
+
       // --- THEMES DATA ---
       const themes = [
   {
