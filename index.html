@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>برنامه‌ریز فارسی</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+      href="https://cdn.fontcdn.ir/Font/Persian/Vazirmatn/Vazirmatn.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div id="date"></div>
+    
+      <div class="hamburger" id="btn-menu">
+        <div class="hamburger-bar top"></div>
+        <div class="hamburger-bar middle"></div>
+        <div class="hamburger-bar bottom"></div>
+      </div>
+    </header>
+    <nav id="nav">
+      <ul>
+        <li data-section="home" class="active">خانه</li>
+        <li data-section="new">وظیفه/هدف جدید</li>
+        <li data-section="calendar">تقویم</li>
+        <li data-section="progress">پیشرفت</li>
+        <li data-section="settings">تنظیمات</li>
+      </ul>
+    </nav>
+    <div id="modalOverlay"><div id="modalBox"></div></div>
+    <!-- مودال انتخاب تاریخ دستی -->
+    <div id="customDateModal">
+      <div id="customDateModalInner">
+        <h4 style="margin-bottom: 1.1rem; color: #4a76a8">
+          انتخاب تاریخ دلخواه
+        </h4>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            gap: 0.7rem;
+            margin-bottom: 1rem;
+          "
+        >
+          <input
+            id="customDateYear"
+            type="number"
+            min="1"
+            max="3000"
+            style="width: 65px; border-radius: 0.6rem; padding: 0.5rem"
+            placeholder="سال"
+          />
+          <input
+            id="customDateMonth"
+            type="number"
+            min="1"
+            max="12"
+            style="width: 45px; border-radius: 0.6rem; padding: 0.5rem"
+            placeholder="ماه"
+          />
+          <input
+            id="customDateDay"
+            type="number"
+            min="1"
+            max="31"
+            style="width: 45px; border-radius: 0.6rem; padding: 0.5rem"
+            placeholder="روز"
+          />
+        </div>
+        <div id="customDateModalError"></div>
+        <button
+          id="customDateSetBtn"
+          class="btn-green"
+          style="margin-left: 1rem"
+        >
+          نمایش
+        </button>
+        <button id="customDateCancelBtn" style="background: #bbb">
+          انصراف
+        </button>
+      </div>
+    </div>
+    <!-- مودال جدید و حرفه‌ای‌تر برای انتخاب ماه و سال (month-title modal) -->
+    <div id="monthTitleModal">
+      <div id="monthTitleModalInner">
+        <h4 style="margin-bottom: 1.1rem; color: #4a76a8">
+          انتخاب سریع ماه و سال
+        </h4>
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+          "
+        >
+          <label for="monthTitleModalYear">سال</label>
+          <input id="monthTitleModalYear" type="number" min="1" max="3000" />
+          <label for="monthTitleModalMonth">ماه</label>
+          <input id="monthTitleModalMonth" type="number" min="1" max="12" />
+        </div>
+        <div id="monthTitleModalError"></div>
+        <button
+          id="monthTitleModalShowBtn"
+          class="btn-green"
+          style="margin-left: 1rem"
+        >
+          نمایش
+        </button>
+        <button id="monthTitleModalCancelBtn" style="background: #bbb">
+          انصراف
+        </button>
+      </div>
+    </div>
+    <main>
+      <section id="home" class="active">
+        <div class="card">
+          <h3>وظایف امروز</h3>
+          <ul id="tasks-list"></ul>
+          <button id="btn-add-task-if-empty">ایجاد مورد جدید</button>
+        </div>
+        <div class="card">
+          <h3>محدودیت‌های امروز</h3>
+          <ul id="limits-list"></ul>
+          <button id="btn-add-limit-if-empty">ایجاد مورد جدید</button>
+        </div>
+        <div class="card">
+          <h3>گزارش</h3>
+          <select id="report-type">
+            <option value="daily">روزانه</option>
+            <option value="weekly">هفتگی</option>
+            <option value="monthly">ماهانه</option>
+            <option value="yearly">سالانه</option>
+          </select>
+          <textarea
+            id="report-text"
+            rows="4"
+            placeholder="گزارش خود را بنویسید..."
+          ></textarea>
+          <button id="btn-save-report">ذخیره گزارش</button>
+        </div>
+        <div class="card">
+          <h3>نمای کلی اهداف</h3>
+          <ul id="goals-list"></ul>
+          <button id="btn-add-goal-if-empty">ایجاد مورد جدید</button>
+        </div>
+      </section>
+      <section id="new">
+        <div class="card">
+          <h3>ایجاد وظیفه یا هدف</h3>
+          <label>دسته‌بندی:</label>
+          <select id="new-category">
+            <option value="task">تسک</option>
+            <option value="limit">محدودیت</option>
+            <option value="goal">هدف</option>
+          </select>
+          <div id="goal-options" style="display: none">
+            <label>بازه:</label>
+            <select id="goal-frequency">
+              <option value="daily">روزانه</option>
+              <option value="weekly">هفتگی</option>
+              <option value="monthly">ماهانه</option>
+              <option value="yearly">سالانه</option>
+            </select>
+          </div>
+          <div id="type-container">
+            <label>نوع:</label>
+            <select id="new-type">
+              <option value="boolean">تیک‌زدنی</option>
+              <option value="quantitative">کمی</option>
+              <option value="timed">زمانی</option>
+            </select>
+          </div>
+          <label>عنوان:</label>
+          <input type="text" id="new-title" placeholder="عنوان را وارد کنید" />
+          <div id="value-container" style="display: none">
+            <label>مقدار کل:</label>
+            <input type="number" id="new-total" min="1" />
+          </div>
+          <button id="btn-save-new">ذخیره</button>
+        </div>
+      </section>
+      <section id="calendar">
+        <div class="card">
+          <h3>تقویم</h3>
+          <div id="calendar-card"></div>
+        </div>
+      </section>
+      <section id="progress">
+        <div class="card">
+          <h3>پیشرفت</h3>
+          <div id="progress-chart" style="min-height: 100px"></div>
+        </div>
+      </section>
+      <section id="settings">
+        <div class="card">
+          <h3>تنظیمات</h3>
+          <label id="theme-select-label" for="theme-select">انتخاب تم برنامه:</label>
+          <select id="theme-select"></select>
+        </div>
+      </section>
+    </main>
+    <!-- تم‌ها و تغییر تم -->
+    <script src="js.js"></script>
+  </body>
+</html>
