@@ -10,11 +10,11 @@
       href="https://cdn.fontcdn.ir/Font/Persian/Vazirmatn/Vazirmatn.css"
       rel="stylesheet"
     />
+    <link href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" rel="stylesheet" />
   </head>
   <body>
     <header>
       <div id="date"></div>
-    
       <div class="hamburger" id="btn-menu">
         <div class="hamburger-bar top"></div>
         <div class="hamburger-bar middle"></div>
@@ -27,6 +27,7 @@
         <li data-section="new">وظیفه/هدف جدید</li>
         <li data-section="calendar">تقویم</li>
         <li data-section="progress">پیشرفت</li>
+        <li data-section="word">ورد</li>
         <li data-section="settings">تنظیمات</li>
       </ul>
     </nav>
@@ -195,6 +196,78 @@
         <div class="card">
           <h3>پیشرفت</h3>
           <div id="progress-chart" style="min-height: 100px"></div>
+        </div>
+      </section>
+      <section id="word">
+        <div class="card word-card">
+          <div class="word-toolbar" id="word-toolbar">
+            <button type="button" data-cmd="bold" title="Bold"><b>B</b></button>
+            <button type="button" data-cmd="italic" title="Italic"><i>I</i></button>
+            <button type="button" data-cmd="underline" title="Underline"><u>U</u></button>
+            <button type="button" data-cmd="strikeThrough" title="Strike"><s>S</s></button>
+            <button type="button" data-cmd="insertOrderedList" title="لیست مرتب">
+              <span style="font-size:1.1em;">۱.</span>
+            </button>
+            <button type="button" data-cmd="insertUnorderedList" title="لیست نامرتب">
+              <span style="font-size:1.1em;">•</span>
+            </button>
+            <button type="button" data-cmd="justifyRight" title="راست‌چین">
+              <svg width="18" height="18" style="vertical-align:middle" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="2" rx="1" fill="currentColor"/><rect x="7" y="7" width="9" height="2" rx="1" fill="currentColor"/><rect x="2" y="11" width="14" height="2" rx="1" fill="currentColor"/><rect x="7" y="15" width="9" height="2" rx="1" fill="currentColor"/></svg>
+            </button>
+            <button type="button" data-cmd="justifyCenter" title="وسط‌چین">
+              <svg width="18" height="18" style="vertical-align:middle" viewBox="0 0 18 18" fill="none"><rect x="4" y="3" width="10" height="2" rx="1" fill="currentColor"/><rect x="2" y="7" width="14" height="2" rx="1" fill="currentColor"/><rect x="4" y="11" width="10" height="2" rx="1" fill="currentColor"/><rect x="2" y="15" width="14" height="2" rx="1" fill="currentColor"/></svg>
+            </button>
+            <button type="button" data-cmd="justifyLeft" title="چپ‌چین">
+              <svg width="18" height="18" style="vertical-align:middle" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="2" rx="1" fill="currentColor"/><rect x="2" y="7" width="9" height="2" rx="1" fill="currentColor"/><rect x="2" y="11" width="14" height="2" rx="1" fill="currentColor"/><rect x="2" y="15" width="9" height="2" rx="1" fill="currentColor"/></svg>
+            </button>
+            <button type="button" data-cmd="undo" title="برگرداندن">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8V4L4 12l8 8v-4c4.418 0 8-3.582 8-8h-2a6 6 0 0 1-6 6z" fill="currentColor"/></svg>
+            </button>
+            <button type="button" data-cmd="redo" title="جلو بردن">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 8V4l8 8-8 8v-4c-4.418 0-8-3.582-8-8h2a6 6 0 0 0 6 6z" fill="currentColor"/></svg>
+            </button>
+            <label class="word-picker-label" title="انتخاب رنگ متن">
+              <input type="color" id="word-color" />
+              <span style="color:black;">رنگ</span>
+            </label>
+            <label class="word-picker-label" title="انتخاب رنگ پس‌زمینه متن">
+              <input type="color" id="word-bgcolor" />
+              <span style="font-size:0.92em;color:black;">پس‌زمینه</span>
+            </label>
+            <select id="word-fontsize" title="سایز فونت" style="margin:0 3px;">
+              <option value="3">متوسط</option>
+              <option value="1">کوچک</option>
+              <option value="2">نیمه کوچک</option>
+              <option value="4">نیمه بزرگ</option>
+              <option value="5">بزرگ</option>
+              <option value="6">خیلی بزرگ</option>
+              <option value="7">بزرگ‌ترین</option>
+            </select>
+            <select id="word-font" title="فونت" style="margin:0 3px;">
+              <option value="Vazirmatn">وزیرمتن</option>
+           <option value="Shabnam">شبنم</option>
+              <option value="Times New Roman">Times</option>
+              <option value="Courier New">Courier</option>
+            </select>
+            <button type="button" id="word-insert-image" title="درج تصویر">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="8" r="2" fill="currentColor"/><path d="M4 18l5.5-5.5a2 2 0 0 1 2.8 0L20 18" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+            <input type="file" id="word-image-input" accept="image/*" style="display:none" />
+            <button type="button" id="word-download" title="دانلود">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4m-7 7h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" id="word-print" title="چاپ">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="12" height="6" rx="2" stroke="currentColor" stroke-width="2"/><rect x="6" y="14" width="12" height="6" rx="2" stroke="currentColor" stroke-width="2"/><rect x="2" y="10" width="20" height="4" rx="2" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+          </div>
+          <span style="margin-right: 5px; margin-bottom: 5px; ">در باکس زیر چیزی تایپ کنید</span>
+          <div class="word-editor-container">
+            <div id="word-editor" class="word-editor" contenteditable="true" spellcheck="false" dir="rtl"></div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1rem;">
+            <button id="word-save" class="btn-green">ذخیره</button>
+            <button id="word-clear" class="danger">پاک‌سازی</button>
+          </div>
         </div>
       </section>
       <section id="settings">
