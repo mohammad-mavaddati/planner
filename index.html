@@ -5,12 +5,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>برنامه‌ریز فارسی</title>
-    <link rel="stylesheet" href="style.css">
     <link
       href="https://cdn.fontcdn.ir/Font/Persian/Vazirmatn/Vazirmatn.css"
       rel="stylesheet"
     />
     <link href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <header>
@@ -32,7 +32,6 @@
       </ul>
     </nav>
     <div id="modalOverlay"><div id="modalBox"></div></div>
-    <!-- مودال انتخاب تاریخ دستی -->
     <div id="customDateModal">
       <div id="customDateModalInner">
         <h4 style="margin-bottom: 1.1rem; color: #4a76a8">
@@ -84,7 +83,6 @@
         </button>
       </div>
     </div>
-    <!-- مودال جدید و حرفه‌ای‌تر برای انتخاب ماه و سال (month-title modal) -->
     <div id="monthTitleModal">
       <div id="monthTitleModalInner">
         <h4 style="margin-bottom: 1.1rem; color: #4a76a8">
@@ -118,6 +116,17 @@
         </button>
       </div>
     </div>
+
+    <div id="imageResizeModal">
+      <div id="imageResizeModalInner">
+        <h4>تنظیم اندازه تصویر</h4>
+       
+        <input type="range" id="imageResizeSlider" min="50" max="800" value="300">
+        <p><span id="imageResizeValueDisplay">300</span>px</p>
+        <button id="imageResizeModalCloseBtn" class="btn-green" style="margin-top: 1rem;">اعمال و بستن</button>
+      </div>
+    </div>
+
     <main>
       <section id="home" class="active">
         <div class="card">
@@ -245,7 +254,7 @@
             </select>
             <select id="word-font" title="فونت" style="margin:0 3px;">
               <option value="Vazirmatn">وزیرمتن</option>
-           <option value="Shabnam">شبنم</option>
+              <option value="Shabnam">شبنم</option>
               <option value="Times New Roman">Times</option>
               <option value="Courier New">Courier</option>
             </select>
@@ -278,7 +287,6 @@
         </div>
       </section>
     </main>
-    <!-- تم‌ها و تغییر تم -->
     <script src="js.js"></script>
   </body>
 </html>
